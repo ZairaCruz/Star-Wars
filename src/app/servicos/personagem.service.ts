@@ -13,4 +13,7 @@ export class PersonagemService {
     return this._http.get('https://swapi.co/api/people');
   }
 
+  paginacao(pagina: any) {
+    return this._http.get(pagina).pipe(response => response);
+  }
 }

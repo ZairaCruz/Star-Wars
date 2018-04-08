@@ -6,5 +6,16 @@
         {{item.name}}
       </p>
     </div>
+
+    <div class="row" style="text-align: center">
+      <button 
+        *ngIf="proximo !== null" 
+        type="submit"
+        (click)="paginacao(true)">
+        Carregar Mais
+      </button> 
+    </div>
+
+  </div>
 </div>
 
