@@ -1,3 +1,4 @@
+import { PersonagemView } from './../modelos/personagem-view.model';
 import { Filme } from './../modelos/filme.model';
 import { Personagem } from './../modelos/personagem.model';
 import { element } from 'protractor';
@@ -13,6 +14,7 @@ export class PersonagensComponent implements OnInit {
 
   public personagens: Personagem[] = [];
   public filmes: Filme[] = [];
+  public personagensView: PersonagemView[] = [];
   public iniciar = false;
   public proximaPagina: string;
   public paginaAnterior: string;
@@ -24,23 +26,15 @@ export class PersonagensComponent implements OnInit {
   ngOnInit() {
     this.personagemService.listar().subscribe((listagem: any) => {
       this.personagens = listagem.results;
-      
       this.proximaPagina = listagem.next;
       this.paginaAnterior = listagem.previous;
       this.paginaAtual = 1;
       this.iniciar = true;
 
       this.personagens.forEach(item => {
-        if (item.films.length > 0) {
-          for (let index = 0; index < item.films.length; index++) {
-            const element = item.films[index];
-            this.filmeService.porPersonagem(element).subscribe((filme: any) => {
-              this.filmes.push(filme);
-            });
-          }
-        }
-        console.log(item.films);
+        this.personagensView.push(this.personagemService.getPersonagemFromView(item));
       });
+ 
     });
 
   }
@@ -53,12 +47,12 @@ export class PersonagensComponent implements OnInit {
       pagina = this.paginaAnterior;
     }
     this.personagemService.paginacao(pagina).subscribe((listagem: any) => {
-      this.personagens.push(listagem.results);
-      listagem.results.forEach(item => {
-        this.personagens.push(item);
+      this.personagens = listagem.results;
+      this.personagens.forEach(item => {
+        this.personagensView.push(this.personagemService.getPersonagemFromView(item));
         
-        console.log(this.personagens);
       });
+      
       this.proximaPagina = listagem.next;
       this.paginaAnterior = listagem.previous;
       this.paginaAtual = pagina.slice(-1);

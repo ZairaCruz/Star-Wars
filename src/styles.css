@@ -1,2 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+nav {
+    color: #fff;
+    background-color: #00c853;
+}
+
+a {
+    color: #fff;
+}
+.card.small {
+    height: 200px;
+}

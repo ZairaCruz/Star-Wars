@@ -10,7 +10,7 @@ export class FilmeService {
   }
 
   listar() {
-    return this._http.get('https://swapi.co/api/films');
+    return this._http.get(this.rota + 'films');
   }
 
   porPersonagem(films: string) {

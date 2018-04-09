@@ -1,21 +1,38 @@
 <div class="container">
   <div *ngIf="iniciar">
-    <div *ngFor="let item of personagens">
 
-      <p>
-        {{item.name}}
-      </p>
-    </div>
+    
+      <div class="row">
+          <div class="col s12 m6"  *ngFor="let item of personagensView">
+          <div class="card small">
+            <div class="row valign-wrapper">
+              <div class="col m6">
+                <img src="{{item.imagem}}" alt="" class="circle responsive-img"> 
+                <!-- notice the "circle" class -->
+              </div>
+              <div class="col s10">
+                <span class="black-text">
+                    Nome: {{item.name}}, {{item.id}}
+                </span>
+                <p class="black-text">
+                    Gênero: {{item.gender}}
+                </p>
+                <a class="waves-effect waves-light btn">Detalhes</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
     <div class="row" style="text-align: center">
-      <button 
-        *ngIf="proximo !== null" 
-        type="submit"
-        (click)="paginacao(true)">
-        Carregar Mais
-      </button> 
-    </div>
 
-  </div>
+        <a class="waves-effect waves-light btn"
+          *ngIf="proximo !== null" 
+          (click)="paginacao(true)">Carregar Mais</a>
+       
+    </div>
 </div>
+    
+
 
