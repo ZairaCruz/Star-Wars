@@ -23,7 +23,7 @@ export class PersonagemService {
   }
 
   porId(id: string) {
-    return this._http.get(this.rota + 'people' + id).pipe(response => response);
+    return this._http.get(this.rota + 'people/' + id).pipe(response => response);
   }
 
   getPersonagemFromView(personagem: Personagem): PersonagemView {

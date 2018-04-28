@@ -22,7 +22,7 @@
                 <p class="black-text">
                     Gênero: {{item.gender}}
                 </p>
-                <a class="waves-effect waves-light btn">Detalhes</a>
+                <a class="waves-effect waves-light btn" [routerLink]="['/detalhes', item.id]">Detalhes</a>
               </div>
             </div>
           </div>
