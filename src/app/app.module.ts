@@ -11,6 +11,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { PersonagensComponent } from './personagens/personagens.component';
 import { routing } from './app.routing';
 import { DetalhesPersonagensComponent } from './detalhes-personagens/detalhes-personagens.component';
+import { LoadingModule, ANIMATION_TYPES } from 'ngx-loading';
+
 
 
 @NgModule({
@@ -24,7 +26,15 @@ import { DetalhesPersonagensComponent } from './detalhes-personagens/detalhes-pe
     BrowserModule,
     HttpClientModule,
     routing,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LoadingModule.forRoot({
+      animationType: ANIMATION_TYPES.threeBounce,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+      backdropBorderRadius: '4px',
+      primaryColour: '#0B3B17', 
+      secondaryColour: '#0B3B17', 
+      tertiaryColour: '#0B3B17'
+  })
   ],
   providers: [
     PersonagemService,

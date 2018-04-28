@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonagensComponent implements OnInit {
 
+  public loading = false;
   public personagens: Personagem[] = [];
   public filmes: Filme[] = [];
   public personagensView: PersonagemView[] = [];
@@ -24,15 +25,18 @@ export class PersonagensComponent implements OnInit {
               public filmeService: FilmeService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.personagemService.listar().subscribe((listagem: any) => {
       this.personagens = listagem.results;
       this.proximaPagina = listagem.next;
       this.paginaAnterior = listagem.previous;
       this.paginaAtual = 1;
       this.iniciar = true;
+     
 
       this.personagens.forEach(item => {
         this.personagensView.push(this.personagemService.getPersonagemFromView(item));
+        this.loading = false;
       });
  
     });
